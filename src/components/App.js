@@ -1,7 +1,9 @@
 import React from "react";
-import BotsPage from "./BotsPage";
+
+import BotsPage from "./BotsPage"
 
 function App() {
+
   return (
     <div className="App">
       <BotsPage />
@@ -9,4 +11,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 

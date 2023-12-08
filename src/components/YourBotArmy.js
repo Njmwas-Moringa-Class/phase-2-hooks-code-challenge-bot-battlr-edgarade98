@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import BotCard from "./BotCard";
 
 function YourBotArmy() {
-  const [enlistedBots, setEnlistedBots] = useState([]);
-
+  const [enlistedBots] = useState([]);
 
   const displayEnlistedBots = enlistedBots.map((bot) => (
     <BotCard 
@@ -11,7 +10,6 @@ function YourBotArmy() {
       bot={bot}
     />
   ));
-
 
   return (
     <div className="ui segment inverted olive bot-army">

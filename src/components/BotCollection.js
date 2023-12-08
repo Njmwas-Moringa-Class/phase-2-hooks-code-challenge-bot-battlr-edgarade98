@@ -7,24 +7,43 @@ function BotCollection() {
   const [bots, setBots] = useState([]);
 
   useEffect(() => {
-    // Fetch bot profiles from an API or link
+    
     fetch('http://localhost:8002/bots')
       .then(response => response.json())
       .then(data => {
-        // Once data is fetched, set the bots state
+        
         setBots(data);
       })
       .catch(error => {
-        // Handle any errors with fetching the data
+        
         console.error('Error fetching bot profiles:', error);
       });
-  }, []); // Empty dependency array to fetch data only once when component mounts
+  }, []); 
+
+  const deleteBot = async (botId) => {
+    try {
+      const response = await fetch(`http://localhost:8002/bots/${botId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setBots(bots.filter(bot => bot.id !== botId));
+      } else {
+        console.error('Failed to delete bot');
+      }
+    } catch (error) {
+      console.error('Error deleting bot:', error);
+    }
+  };
+
 
 
   const displayBots = bots.map((bot) => (
     <BotCard 
       key={bot.id}
       bot={bot}
+      onDeleteBot={deleteBot} 
+      
     />
   ));
 return (
@@ -38,5 +57,6 @@ return (
     </div>
   );
 }
+
 
 export default BotCollection; 
