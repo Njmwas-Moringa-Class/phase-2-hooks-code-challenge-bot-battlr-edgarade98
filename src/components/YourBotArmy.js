@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import BotCard from "./BotCard";
 
-function YourBotArmy() {
+function YourBotArmy(onReleaseBot) {
   const [enlistedBots] = useState([]);
 
   const displayEnlistedBots = enlistedBots.map((bot) => (
     <BotCard 
       key={bot.id}
       bot={bot}
+      onReleaseBot={onReleaseBot}
     />
   ));
 

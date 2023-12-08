@@ -9,16 +9,24 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({bot, onDeleteBot, onEnlistBot}) {
+function BotCard({bot, onDeleteBot, onEnlistBot, onReleaseBot }) {
   const handleDelete = () => {
     onDeleteBot(bot.id);}
+    const handleEnlist = () => {
+      onEnlistBot(bot.id);
+    };
+  
+    const handleRelease = () => {
+      onReleaseBot(bot.id);
+    };
+
   return (
     <div className="ui column">
       <div
-        className="ui card" 
+        className="ui card" onClick={handleEnlist}
         key={bot.id}
       >
-        <div className="image" >
+        <div className="image"  onClick={handleRelease}>
           <img alt="oh no!" src={bot.avatar_url} />
         </div>
         <div className="content">
@@ -52,6 +60,7 @@ function BotCard({bot, onDeleteBot, onEnlistBot}) {
               >
                 x
               </button>
+              
             
             </div>
           </span>
